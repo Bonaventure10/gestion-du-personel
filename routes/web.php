@@ -23,6 +23,12 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 Route::get('/test', [dashboardController::class, 'index'])
 ->name('test');
 
+Route::get('/ajoutPersonnel', [dashboardController::class, 'create'])
+->name('ajoutPersonnel');
+
+Route::post('/inserePersonnel', [dashboardController::class, 'store'])
+->name('inserePersonnel');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

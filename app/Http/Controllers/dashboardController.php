@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Personnel;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
@@ -29,15 +29,27 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('ajoutPersonnel',['personnel' => new Personnel() ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'telephone' => 'required',
+        ]);
+        
+        // Insert data in the 'pages' table
+			$query = Personnel::create($validated);
+			if ($query) {
+				return redirect()->route('test')->with('success');
+			} else {
+				return redirect()->back()->with('error', 'Adding a new page failed');
+			}
     }
 
     /**
