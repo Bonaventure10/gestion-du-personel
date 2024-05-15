@@ -46,9 +46,9 @@ class DashboardController extends Controller
         // Insert data in the 'pages' table
 			$query = Personnel::create($validated);
 			if ($query) {
-				return redirect()->route('test')->with('success');
+				return redirect()->route('dashboard')->with('success');
 			} else {
-				return redirect()->back()->with('error', 'Adding a new page failed');
+				return redirect()->back()->with('error', 'Adding a new page failed bad');
 			}
     }
 
@@ -63,9 +63,10 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $personnel = Personnel::find($id);
+        return view('editPersonnel',compact('personnel'));
     }
 
     /**

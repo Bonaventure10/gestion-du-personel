@@ -15,8 +15,6 @@
 				<i class="fa-solid fa-circle-plus"></i> Ajouter un personel
 			</a>
 		</div>
-
-
                 <table class="table table-dark table-striped">
   <thead>
     <tr>
@@ -39,11 +37,10 @@
             <a href="" class="btn btn-primary">
                 <i class="fa-solid fa-eye"></i> Regarder
             </a>
-            <a href=""
-                class="btn btn-primary">
-                <i class="fa-solid fa-pen-to-square"></i> Editer
-            </a>
-
+              <a href="{{ route('modifiPersonnel', [$personnel->id]) }} "
+              class="btn btn-primary">
+              <i class="fa-solid fa-pen-to-square"></i> Editer
+          </a>
             <a href=""
                 class="btn btn-primary" onclick="return confirm('Delete this article?')"
                 title="Delete article">

@@ -20,8 +20,8 @@ use App\Http\Controllers\dashboardController;
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
 ->name('login');
 
-Route::get('/test', [dashboardController::class, 'index'])
-->name('test');
+Route::get('/dashboard', [dashboardController::class, 'index'])->middleware(['auth', 'verified'])
+->name('dashboard');
 
 Route::get('/ajoutPersonnel', [dashboardController::class, 'create'])
 ->name('ajoutPersonnel');
@@ -29,9 +29,9 @@ Route::get('/ajoutPersonnel', [dashboardController::class, 'create'])
 Route::post('/inserePersonnel', [dashboardController::class, 'store'])
 ->name('inserePersonnel');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/modifiPersonnel', [dashboardController::class, 'edit'])
+->name('modifiPersonnel');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
